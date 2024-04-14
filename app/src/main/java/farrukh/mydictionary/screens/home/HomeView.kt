@@ -2,6 +2,7 @@ package farrukh.mydictionary.screens.home
 
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -174,7 +175,7 @@ fun HomeView(navController: NavController, homeViewModel: HomeViewModel) {
                     }
 
                    else if (state == true) {
-                        items(homeViewModel.filterByName()) {
+                        items(homeViewModel.filterByName()  ) {
                             WordItem(navController = navController, word = it, homeViewModel)
                         }
                     }
@@ -199,7 +200,7 @@ fun HomeView(navController: NavController, homeViewModel: HomeViewModel) {
 fun WordItem(navController: NavController, word: Word, homeViewModel: HomeViewModel) {
     Card(
         modifier = Modifier
-            .background(backCard)
+            .background(backCard).clickable { navController.navigate("word_screen/${word.id}") }
             .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(5.dp) // CardDefaults.cardElevation is deprecated, you can directly use dp values
     ) {

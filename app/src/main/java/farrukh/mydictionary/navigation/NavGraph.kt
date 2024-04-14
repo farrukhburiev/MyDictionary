@@ -9,6 +9,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import farrukh.mydictionary.screens.WordView
 import farrukh.mydictionary.screens.add_edit.AddEditModel
 import farrukh.mydictionary.screens.add_edit.AddEditView
 import farrukh.mydictionary.screens.add_edit.AddEditViewModel
@@ -49,6 +50,23 @@ fun AppNavHost(
             val model = AddEditModel(context)
             val addUpdateViewModel = AddEditViewModel(model,wordId)
             AddEditView(navController,addUpdateViewModel)
+        }
+
+        composable(Screens.WordScreen.route,
+            arguments = listOf(navArgument("id") { type = NavType.IntType }),
+            enterTransition = {
+                slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left, tween(300))
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    tween(200)
+                )
+            }) { entry ->
+            val wordId = entry.arguments?.getInt("id")!!
+            val model = AddEditModel(context)
+            val addUpdateViewModel = AddEditViewModel(model,wordId)
+            WordView(navController,addUpdateViewModel)
         }
 
 

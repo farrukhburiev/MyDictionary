@@ -7,5 +7,6 @@ sealed class Screens (val route: String) {
     object HomeScreen: Screens("home_screen")
 
     object AddScreen: Screens("add_screen/{id}")
+    object WordScreen: Screens("word_screen/{id}")
 
 }
